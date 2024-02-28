@@ -4,6 +4,7 @@ import br.edu.ifpb.dac.domain.enumeration.UserType;
 import jakarta.persistence.*;
 
 @Table(name = "USER_TB")
+@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
