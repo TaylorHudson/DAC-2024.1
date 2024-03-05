@@ -3,17 +3,18 @@ package br.edu.ifpb.dac;
 import br.edu.ifpb.dac.domain.User;
 import br.edu.ifpb.dac.domain.enumeration.UserType;
 import br.edu.ifpb.dac.persistence.repository.UserRepository;
+import br.edu.ifpb.dac.util.reader.DataReader;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Scanner;
-
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-    public Application(UserRepository userRepository) {
+    public Application(UserRepository userRepository, @Qualifier("scanner") DataReader reader) {
         this.userRepository = userRepository;
+        this.reader = reader;
     }
 
     public static void main(String[] args) {
@@ -21,39 +22,30 @@ public class Application implements CommandLineRunner {
     }
 
     private final UserRepository userRepository;
+    private final DataReader reader;
 
     @Override
     public void run(String... args) {
-        Scanner sc = new Scanner(System.in);
-
         while (true) {
-            System.out.println(
+            String answer = reader.read(
                     """
                     Menu de opções
-            
+                                
                     1 - Criar um usuário
                     2 - Mostrar todos os usuários     
                     S - Sair
                     """
             );
 
-            String answer = sc.nextLine();
-
             switch (answer) {
                 case "1" -> {
-                    System.out.print("Digite 1 se for cliente ou 2 se for operador: ");
-                    int code = Integer.parseInt(sc.nextLine());
+                    int code = Integer.parseInt(reader.read("Digite 1 se for cliente ou 2 se for operador: "));
                     UserType type = UserType.findByCode(code);
-                    System.out.print("Primeiro nome: ");
-                    String firstName = sc.nextLine();
-                    System.out.print("Sobrenome: ");
-                    String lastName = sc.nextLine();
-                    System.out.print("Email: ");
-                    String email = sc.nextLine();
-                    System.out.print("Senha: ");
-                    String password = sc.nextLine();
-                    System.out.print("CPF: ");
-                    String document = sc.nextLine();
+                    String firstName = reader.read("Nome: ");
+                    String lastName = reader.read("Sobrenome: ");
+                    String email = reader.read("Email: ");
+                    String password = reader.read("Senha: ");
+                    String document = reader.read("CPF: ");
 
                     User user = new User(
                             firstName,
