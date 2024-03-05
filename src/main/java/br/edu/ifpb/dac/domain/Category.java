@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Set;
+import java.util.List;
 
-@Table(name = "PRODUCT_TB")
+@Table(name = "CATEGORY_TB")
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
-public class Product {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -19,11 +19,6 @@ public class Product {
     private String name;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private Double price;
-    @ElementCollection
-    @CollectionTable(name = "PRODUCT_IMAGES_TB")
-    private Set<String> images;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Category category;
+    @OneToMany(mappedBy = "category")
+    private List<Product> relatedProducts;
 }
