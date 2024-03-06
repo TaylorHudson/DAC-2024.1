@@ -1,6 +1,4 @@
-package br.edu.ifpb.dac.domain.enumeration;
-
-import java.util.Arrays;
+package br.edu.ifpb.dac.model.enumeration;
 
 public enum UserType {
 

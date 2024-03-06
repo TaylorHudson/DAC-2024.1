@@ -1,7 +1,7 @@
-package br.edu.ifpb.dac.domain.controller;
+package br.edu.ifpb.dac.controller;
 
-import br.edu.ifpb.dac.domain.Product;
-import br.edu.ifpb.dac.domain.service.ProductService;
+import br.edu.ifpb.dac.model.Product;
+import br.edu.ifpb.dac.model.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 

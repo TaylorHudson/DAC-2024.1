@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.domain;
+package br.edu.ifpb.dac.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

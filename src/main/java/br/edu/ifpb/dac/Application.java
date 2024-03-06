@@ -1,8 +1,8 @@
 package br.edu.ifpb.dac;
 
-import br.edu.ifpb.dac.domain.User;
-import br.edu.ifpb.dac.domain.enumeration.UserType;
-import br.edu.ifpb.dac.persistence.repository.UserRepository;
+import br.edu.ifpb.dac.model.User;
+import br.edu.ifpb.dac.model.enumeration.UserType;
+import br.edu.ifpb.dac.model.repository.UserRepository;
 import br.edu.ifpb.dac.util.reader.DataReader;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;

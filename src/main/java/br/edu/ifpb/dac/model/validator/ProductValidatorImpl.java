@@ -1,7 +1,7 @@
-package br.edu.ifpb.dac.domain.validator;
+package br.edu.ifpb.dac.model.validator;
 
-import br.edu.ifpb.dac.domain.Product;
-import br.edu.ifpb.dac.domain.validator.exception.InvalidAttributeException;
+import br.edu.ifpb.dac.model.Product;
+import br.edu.ifpb.dac.model.validator.exception.InvalidAttributeException;
 import org.springframework.stereotype.Component;
 
 @Component

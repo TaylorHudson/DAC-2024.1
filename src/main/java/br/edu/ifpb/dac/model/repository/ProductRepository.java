@@ -1,6 +1,6 @@
-package br.edu.ifpb.dac.persistence.repository;
+package br.edu.ifpb.dac.model.repository;
 
-import br.edu.ifpb.dac.domain.Product;
+import br.edu.ifpb.dac.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {

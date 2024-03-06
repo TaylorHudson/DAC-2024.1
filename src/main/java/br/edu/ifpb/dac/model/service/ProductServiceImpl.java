@@ -1,10 +1,10 @@
-package br.edu.ifpb.dac.domain.service;
+package br.edu.ifpb.dac.model.service;
 
-import br.edu.ifpb.dac.domain.Product;
-import br.edu.ifpb.dac.domain.validator.ProductValidator;
-import br.edu.ifpb.dac.persistence.repository.ProductRepository;
-import br.edu.ifpb.dac.persistence.repository.exception.EntityAlreadyExistsException;
-import br.edu.ifpb.dac.persistence.repository.exception.EntityNotFoundException;
+import br.edu.ifpb.dac.model.Product;
+import br.edu.ifpb.dac.model.validator.ProductValidator;
+import br.edu.ifpb.dac.model.repository.ProductRepository;
+import br.edu.ifpb.dac.model.repository.exception.EntityAlreadyExistsException;
+import br.edu.ifpb.dac.model.repository.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.persistence.repository.exception;
+package br.edu.ifpb.dac.model.repository.exception;
 
 public class EntityAlreadyExistsException extends RuntimeException {
     public EntityAlreadyExistsException(String message) {

@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.domain.validator.exception;
+package br.edu.ifpb.dac.model.validator.exception;
 
 public class InvalidAttributeException extends RuntimeException {
     public InvalidAttributeException(String message) {
