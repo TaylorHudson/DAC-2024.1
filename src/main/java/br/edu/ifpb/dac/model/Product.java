@@ -1,20 +1,16 @@
 package br.edu.ifpb.dac.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
+import lombok.*;
 import java.util.Set;
 
 @Table(name = "PRODUCT_TB")
 @Entity
-@Data
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +22,10 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private Double price;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PRODUCT_IMAGES_TB")
     private Set<String> images;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Category category;
 
     public Product(String name, String description, Double price, Set<String> images, Category category) {
@@ -38,5 +34,17 @@ public class Product {
         this.price = price;
         this.images = images;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", images='" + images + '\'' +
+                ", category=" + category.getName() +
+                '}';
     }
 }
