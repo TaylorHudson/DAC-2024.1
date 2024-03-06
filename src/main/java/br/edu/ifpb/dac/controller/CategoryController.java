@@ -17,11 +17,11 @@ public class CategoryController {
         return categoryService.save(category);
     }
 
-    public List<Category> getProducts() {
+    public List<Category> getCategories() {
         return categoryService.getCategories();
     }
 
-    public Category getProductById(Long id) {
+    public Category getCategoryById(Long id) {
         return categoryService.getCategoryById(id);
     }
 
