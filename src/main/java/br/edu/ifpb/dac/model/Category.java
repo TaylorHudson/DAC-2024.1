@@ -1,8 +1,10 @@
 package br.edu.ifpb.dac.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +25,9 @@ public class Category {
     private String description;
     @OneToMany(mappedBy = "category")
     private List<Product> relatedProducts;
+
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }
