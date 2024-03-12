@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.model.repository.exception;
+package br.edu.ifpb.dac.ecommerce.model.repository.exception;
 
 public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException(String message) {

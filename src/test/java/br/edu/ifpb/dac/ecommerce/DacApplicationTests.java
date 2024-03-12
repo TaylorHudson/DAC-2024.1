@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac;
+package br.edu.ifpb.dac.ecommerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
-package br.edu.ifpb.dac.model.repository;
+package br.edu.ifpb.dac.ecommerce.model.repository;
 
-import br.edu.ifpb.dac.model.Category;
+import br.edu.ifpb.dac.ecommerce.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {

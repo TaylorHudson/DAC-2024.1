@@ -8,11 +8,11 @@
         <version>3.2.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>br.edu.ifpb</groupId>
-    <artifactId>dac</artifactId>
+    <groupId>br.edu.ifpb.dac</groupId>
+    <artifactId>ecommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dac</name>
-    <description>dac</description>
+    <name>ecommerce</name>
+    <description>ecommerce</description>
     <properties>
         <java.version>17</java.version>
     </properties>

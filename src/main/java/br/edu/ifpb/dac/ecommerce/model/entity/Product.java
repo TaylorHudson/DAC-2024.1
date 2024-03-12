@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.model;
+package br.edu.ifpb.dac.ecommerce.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

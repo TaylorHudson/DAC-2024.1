@@ -1,6 +1,7 @@
-package br.edu.ifpb.dac.model.service;
+package br.edu.ifpb.dac.ecommerce.business.service;
 
-import br.edu.ifpb.dac.model.Category;
+
+import br.edu.ifpb.dac.ecommerce.model.entity.Category;
 
 import java.util.List;
 

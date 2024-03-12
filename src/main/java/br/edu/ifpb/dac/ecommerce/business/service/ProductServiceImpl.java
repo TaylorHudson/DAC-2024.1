@@ -1,10 +1,9 @@
-package br.edu.ifpb.dac.model.service;
+package br.edu.ifpb.dac.ecommerce.business.service;
 
-import br.edu.ifpb.dac.model.Product;
-import br.edu.ifpb.dac.model.validator.ProductValidator;
-import br.edu.ifpb.dac.model.repository.ProductRepository;
-import br.edu.ifpb.dac.model.repository.exception.EntityAlreadyExistsException;
-import br.edu.ifpb.dac.model.repository.exception.EntityNotFoundException;
+import br.edu.ifpb.dac.ecommerce.model.entity.Product;
+import br.edu.ifpb.dac.ecommerce.model.repository.ProductRepository;
+import br.edu.ifpb.dac.ecommerce.model.repository.exception.EntityAlreadyExistsException;
+import br.edu.ifpb.dac.ecommerce.model.repository.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +14,9 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final ProductValidator productValidator;
 
     @Override
     public Product save(Product newProduct) {
-        productValidator.validate(newProduct);
         if (productRepository.existsByName(newProduct.getName()))
             throw new EntityAlreadyExistsException("Entity with the name supplied already exists");
 
@@ -39,7 +36,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(Long id, Product updatedProduct) {
-        productValidator.validate(updatedProduct);
         if (productRepository.existsByName(updatedProduct.getName()))
             throw new EntityAlreadyExistsException("Entity with the name supplied already exists");
 

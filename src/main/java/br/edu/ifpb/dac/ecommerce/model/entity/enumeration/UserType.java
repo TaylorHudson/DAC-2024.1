@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.model.enumeration;
+package br.edu.ifpb.dac.ecommerce.model.entity.enumeration;
 
 public enum UserType {
 
