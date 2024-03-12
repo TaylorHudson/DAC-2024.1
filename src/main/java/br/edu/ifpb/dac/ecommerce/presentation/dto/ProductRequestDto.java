@@ -1,22 +1,15 @@
 package br.edu.ifpb.dac.ecommerce.presentation.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
 
 public record ProductRequestDto(
-        @NotEmpty
-        @NotNull
+        @NotBlank(message = "Product name must not be blank")
         String name,
-        @NotEmpty
-        @NotNull
+        @NotBlank(message = "Product description must not be blank")
         String description,
-        @NotEmpty
-        @NotNull
         Double price,
         Set<String> images,
-        @NotEmpty
-        @NotNull
         Long categoryId
 ) {}
