@@ -1,6 +1,6 @@
-package br.edu.ifpb.dac.domain;
+package br.edu.ifpb.dac.model;
 
-import br.edu.ifpb.dac.domain.enumeration.UserType;
+import br.edu.ifpb.dac.model.enumeration.UserType;
 import jakarta.persistence.*;
 
 import java.util.Objects;
