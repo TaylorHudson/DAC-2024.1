@@ -2,7 +2,9 @@ package br.edu.ifpb.dac.ecommerce.presentation.controller;
 
 import br.edu.ifpb.dac.ecommerce.business.mapper.Mapper;
 import br.edu.ifpb.dac.ecommerce.business.service.ProductService;
+import br.edu.ifpb.dac.ecommerce.model.entity.Category;
 import br.edu.ifpb.dac.ecommerce.model.entity.Product;
+import br.edu.ifpb.dac.ecommerce.presentation.dto.CategoryResponseDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.ProductRequestDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.ProductResponseDto;
 import jakarta.validation.Valid;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,11 +33,10 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductResponseDto>> getProducts() {
-        List<ProductResponseDto> response = productService.getProducts()
-                .stream()
-                .map(productToResponseMapper::map)
-                .toList();
-
+        List<Product> entities = productService.getProducts();
+        List<ProductResponseDto> response = new ArrayList<>();
+        if (entities != null && !entities.isEmpty())
+            entities.forEach(entity -> response.add(productToResponseMapper.map(entity)));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
