@@ -2,9 +2,7 @@ package br.edu.ifpb.dac.ecommerce.presentation.controller;
 
 import br.edu.ifpb.dac.ecommerce.business.mapper.Mapper;
 import br.edu.ifpb.dac.ecommerce.business.service.ProductService;
-import br.edu.ifpb.dac.ecommerce.model.entity.Category;
 import br.edu.ifpb.dac.ecommerce.model.entity.Product;
-import br.edu.ifpb.dac.ecommerce.presentation.dto.CategoryResponseDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.ProductRequestDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.ProductResponseDto;
 import jakarta.validation.Valid;
@@ -12,10 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequestScope
 @RestController
 @RequestMapping("/product")
 @RequiredArgsConstructor
