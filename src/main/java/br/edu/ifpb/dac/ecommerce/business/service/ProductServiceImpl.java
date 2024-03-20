@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product save(Product newProduct) {
         if (productRepository.existsByName(newProduct.getName()))
-            throw new EntityAlreadyExistsException("name");
+            throw new EntityAlreadyExistsException();
 
         return productRepository.save(newProduct);
     }
@@ -31,15 +31,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id"));
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
     public Product update(Long id, Product updatedProduct) {
         productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id"));
+                .orElseThrow(EntityNotFoundException::new);
         if (productRepository.existsByName(updatedProduct.getName()))
-            throw new EntityAlreadyExistsException("name");
+            throw new EntityAlreadyExistsException();
 
         updatedProduct.setId(id);
         return productRepository.save(updatedProduct);
@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(Long id) {
         var product = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id"));
+                .orElseThrow(EntityNotFoundException::new);
         productRepository.delete(product);
     }
 }
