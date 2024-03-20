@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.ecommerce.presentation.controller;
 import br.edu.ifpb.dac.ecommerce.business.mapper.Mapper;
 import br.edu.ifpb.dac.ecommerce.business.service.CategoryService;
 import br.edu.ifpb.dac.ecommerce.model.entity.Category;
+import br.edu.ifpb.dac.ecommerce.presentation.controller.contract.CategoryApiContract;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.CategoryRequestDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.CategoryResponseDto;
 import jakarta.validation.Valid;
@@ -17,21 +18,20 @@ import java.util.List;
 
 @RequestScope
 @RestController
-@RequestMapping("/category")
 @RequiredArgsConstructor
-public class CategoryController {
+public class CategoryController implements CategoryApiContract {
 
     private final CategoryService categoryService;
     private final Mapper<CategoryRequestDto, Category> requestToCategoryMapper;
     private final Mapper<Category, CategoryResponseDto> categoryToResponseMapper;
 
-    @PostMapping
-    public ResponseEntity<CategoryResponseDto> save(@RequestBody @Valid CategoryRequestDto requestDto) {
+    @Override
+    public ResponseEntity<CategoryResponseDto> save(CategoryRequestDto requestDto) {
         Category category = categoryService.save(requestToCategoryMapper.map(requestDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryToResponseMapper.map(category));
     }
 
-    @GetMapping
+    @Override
     public ResponseEntity<List<CategoryResponseDto>> getCategories() {
         List<Category> entities = categoryService.getCategories();
         List<CategoryResponseDto> response = new ArrayList<>();
@@ -40,20 +40,20 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponseDto> getCategoryById(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<CategoryResponseDto> getCategoryById(Long id) {
         CategoryResponseDto response = categoryToResponseMapper.map(categoryService.getCategoryById(id));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDto> update(@PathVariable Long id, @RequestBody @Valid CategoryRequestDto requestDto) {
+    @Override
+    public ResponseEntity<CategoryResponseDto> update(Long id, CategoryRequestDto requestDto) {
         Category category = categoryService.update(id, requestToCategoryMapper.map(requestDto));
         return ResponseEntity.status(HttpStatus.OK).body(categoryToResponseMapper.map(category));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<Void> delete(Long id) {
         categoryService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category save(Category newCategory) {
         if (categoryRepository.existsByName(newCategory.getName()))
-            throw new EntityAlreadyExistsException("name");
+            throw new EntityAlreadyExistsException();
 
         return categoryRepository.save(newCategory);
     }
@@ -31,15 +31,15 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id"));
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
     public Category update(Long id, Category updatedCategory) {
         categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id"));
+                .orElseThrow(EntityNotFoundException::new);
         if (categoryRepository.existsByName(updatedCategory.getName()))
-            throw new EntityAlreadyExistsException("name");
+            throw new EntityAlreadyExistsException();
 
         updatedCategory.setId(id);
         return categoryRepository.save(updatedCategory);
@@ -48,7 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(Long id) {
         var product = categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id"));
+                .orElseThrow(EntityNotFoundException::new);
         categoryRepository.delete(product);
     }
 }
