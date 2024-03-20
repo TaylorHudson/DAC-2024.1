@@ -1,7 +1,20 @@
 package br.edu.ifpb.dac.ecommerce.model.repository.exception;
 
-public class EntityAlreadyExistsException extends RuntimeException {
-    public EntityAlreadyExistsException(String field) {
-        super("Entity with the " + field.trim() + " supplied is already exists.");
+import br.edu.ifpb.dac.ecommerce.model.exception.EcommerceBusinessException;
+
+import java.util.Map;
+
+public class EntityAlreadyExistsException extends EcommerceBusinessException {
+    public EntityAlreadyExistsException() {
+        super(
+                "Ops! Verificamos que esse cadastro já existe",
+                Map.of()
+        );
+    }
+    public EntityAlreadyExistsException(String message) {
+        super(
+                message,
+                Map.of()
+        );
     }
 }

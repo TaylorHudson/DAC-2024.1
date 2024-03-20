@@ -1,7 +1,21 @@
 package br.edu.ifpb.dac.ecommerce.model.repository.exception;
 
-public class EntityNotFoundException extends RuntimeException {
-    public EntityNotFoundException(String field) {
-        super("Entity with the " + field.trim() + " supplied is not found.");
+import br.edu.ifpb.dac.ecommerce.model.exception.EcommerceBusinessException;
+
+import java.util.Map;
+
+public class EntityNotFoundException extends EcommerceBusinessException {
+    public EntityNotFoundException() {
+        super(
+                "Ops! Não foi encontrado nenhum registro correspondente com essa busca",
+                Map.of()
+        );
+    }
+
+    public EntityNotFoundException(String message) {
+        super(
+                message,
+                Map.of()
+        );
     }
 }
