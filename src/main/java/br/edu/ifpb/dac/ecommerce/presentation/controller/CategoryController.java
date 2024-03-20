@@ -6,11 +6,10 @@ import br.edu.ifpb.dac.ecommerce.model.entity.Category;
 import br.edu.ifpb.dac.ecommerce.presentation.controller.contract.CategoryApiContract;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.CategoryRequestDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.CategoryResponseDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.ArrayList;
