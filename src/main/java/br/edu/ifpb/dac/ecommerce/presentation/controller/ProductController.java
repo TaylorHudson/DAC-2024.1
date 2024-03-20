@@ -3,9 +3,9 @@ package br.edu.ifpb.dac.ecommerce.presentation.controller;
 import br.edu.ifpb.dac.ecommerce.business.mapper.Mapper;
 import br.edu.ifpb.dac.ecommerce.business.service.ProductService;
 import br.edu.ifpb.dac.ecommerce.model.entity.Product;
+import br.edu.ifpb.dac.ecommerce.presentation.controller.contract.ProductApiContract;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.ProductRequestDto;
 import br.edu.ifpb.dac.ecommerce.presentation.dto.ProductResponseDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,21 +17,20 @@ import java.util.List;
 
 @RequestScope
 @RestController
-@RequestMapping("/product")
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController implements ProductApiContract {
 
     private final ProductService productService;
     private final Mapper<ProductRequestDto, Product> requestToProductMapper;
     private final Mapper<Product, ProductResponseDto> productToResponseMapper;
 
-    @PostMapping
-    public ResponseEntity<ProductResponseDto> save(@RequestBody @Valid ProductRequestDto requestDto) {
+    @Override
+    public ResponseEntity<ProductResponseDto> save(ProductRequestDto requestDto) {
         Product product = productService.save(requestToProductMapper.map(requestDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(productToResponseMapper.map(product));
     }
 
-    @GetMapping
+    @Override
     public ResponseEntity<List<ProductResponseDto>> getProducts() {
         List<Product> entities = productService.getProducts();
         List<ProductResponseDto> response = new ArrayList<>();
@@ -40,20 +39,20 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<ProductResponseDto> getProductById(Long id) {
         ProductResponseDto response = productToResponseMapper.map(productService.getProductById(id));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ProductResponseDto> update(@PathVariable Long id, @RequestBody @Valid ProductRequestDto requestDto) {
+    @Override
+    public ResponseEntity<ProductResponseDto> update(Long id, ProductRequestDto requestDto) {
         Product product = productService.update(id, requestToProductMapper.map(requestDto));
         return ResponseEntity.status(HttpStatus.OK).body(productToResponseMapper.map(product));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<Void> delete(Long id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
