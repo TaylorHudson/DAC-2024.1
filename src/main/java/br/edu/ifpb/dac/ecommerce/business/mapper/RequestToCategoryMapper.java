@@ -10,6 +10,7 @@ public class RequestToCategoryMapper implements Mapper<CategoryRequestDto, Categ
     @Override
     public Category map(CategoryRequestDto request) {
         return new Category(
+                request.id(),
                 request.name(),
                 request.description()
         );

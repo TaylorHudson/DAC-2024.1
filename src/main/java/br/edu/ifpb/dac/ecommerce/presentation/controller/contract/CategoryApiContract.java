@@ -118,14 +118,8 @@ public interface CategoryApiContract {
                     )
             )
     })
-    @PutMapping("/{id}")
+    @PutMapping
     ResponseEntity<CategoryResponseDto> update(
-            @Parameter(
-                    description = "Id of the category",
-                    required = true,
-                    example = "1"
-            )
-            @PathVariable Long id,
             @Parameter(
                     description = "The updated category payload",
                     required = true

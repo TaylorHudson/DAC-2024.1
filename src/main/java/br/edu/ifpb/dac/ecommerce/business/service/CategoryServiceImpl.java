@@ -35,13 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category update(Long id, Category updatedCategory) {
-        categoryRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-        if (categoryRepository.existsByName(updatedCategory.getName()))
-            throw new EntityAlreadyExistsException();
-
-        updatedCategory.setId(id);
+    public Category update(Category updatedCategory) {
         return categoryRepository.save(updatedCategory);
     }
 

@@ -46,8 +46,8 @@ public class CategoryController implements CategoryApiContract {
     }
 
     @Override
-    public ResponseEntity<CategoryResponseDto> update(Long id, CategoryRequestDto requestDto) {
-        Category category = categoryService.update(id, requestToCategoryMapper.map(requestDto));
+    public ResponseEntity<CategoryResponseDto> update(CategoryRequestDto requestDto) {
+        Category category = categoryService.update(requestToCategoryMapper.map(requestDto));
         return ResponseEntity.status(HttpStatus.OK).body(categoryToResponseMapper.map(category));
     }
 
