@@ -35,13 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(Long id, Product updatedProduct) {
-        productRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-        if (productRepository.existsByName(updatedProduct.getName()))
-            throw new EntityAlreadyExistsException();
-
-        updatedProduct.setId(id);
+    public Product update(Product updatedProduct) {
         return productRepository.save(updatedProduct);
     }
 

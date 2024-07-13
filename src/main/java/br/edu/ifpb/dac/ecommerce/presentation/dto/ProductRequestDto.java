@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.Set;
 
 public record ProductRequestDto(
+        Long id,
         @NotBlank(message = "Product name must not be blank")
         String name,
         @NotBlank(message = "Product description must not be blank")

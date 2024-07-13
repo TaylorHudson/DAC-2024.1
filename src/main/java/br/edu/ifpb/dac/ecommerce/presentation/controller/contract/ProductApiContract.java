@@ -116,14 +116,8 @@ public interface ProductApiContract {
                     )
             )
     })
-    @PutMapping("/{id}")
+    @PutMapping
     ResponseEntity<ProductResponseDto> update(
-            @Parameter(
-                    description = "Id of the product",
-                    required = true,
-                    example = "1"
-            )
-            @PathVariable Long id,
             @Parameter(
                     description = "The updated product payload",
                     required = true

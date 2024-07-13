@@ -18,6 +18,7 @@ public class RequestToProductMapper implements Mapper<ProductRequestDto, Product
         Category category = categoryService.getCategoryById(input.categoryId());
 
         return new Product(
+                input.id(),
                 input.name(),
                 input.description(),
                 input.price(),

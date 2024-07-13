@@ -46,8 +46,8 @@ public class ProductController implements ProductApiContract {
     }
 
     @Override
-    public ResponseEntity<ProductResponseDto> update(Long id, ProductRequestDto requestDto) {
-        Product product = productService.update(id, requestToProductMapper.map(requestDto));
+    public ResponseEntity<ProductResponseDto> update(ProductRequestDto requestDto) {
+        Product product = productService.update(requestToProductMapper.map(requestDto));
         return ResponseEntity.status(HttpStatus.OK).body(productToResponseMapper.map(product));
     }
 
