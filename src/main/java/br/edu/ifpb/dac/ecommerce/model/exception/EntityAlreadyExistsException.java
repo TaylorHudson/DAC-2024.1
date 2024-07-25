@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.ecommerce.model.repository.exception;
+package br.edu.ifpb.dac.ecommerce.model.exception;
 
 import br.edu.ifpb.dac.ecommerce.model.exception.EcommerceBusinessException;
 

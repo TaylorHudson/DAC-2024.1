@@ -1,8 +1,12 @@
 package br.edu.ifpb.dac.ecommerce.model.entity;
 
-import br.edu.ifpb.dac.ecommerce.model.entity.enumeration.UserType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "USER_TB")
 @Entity
@@ -11,44 +15,56 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+@Builder
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
     @Column(nullable = false)
-    private String firstName;
-    @Column(nullable = false)
-    private String lastName;
+    private String username;
     @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
     @Column(unique = true, nullable = false)
     private String document;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UserType type;
-
-    public User(String firstName, String lastName, String email, String password, String document, UserType type) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.document = document;
-        this.type = type;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", document='" + document + '\'' +
-                ", type=" + type +
                 '}';
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -2,8 +2,8 @@ package br.edu.ifpb.dac.ecommerce.business.service;
 
 import br.edu.ifpb.dac.ecommerce.model.entity.Category;
 import br.edu.ifpb.dac.ecommerce.model.repository.CategoryRepository;
-import br.edu.ifpb.dac.ecommerce.model.repository.exception.EntityAlreadyExistsException;
-import br.edu.ifpb.dac.ecommerce.model.repository.exception.EntityNotFoundException;
+import br.edu.ifpb.dac.ecommerce.model.exception.EntityAlreadyExistsException;
+import br.edu.ifpb.dac.ecommerce.model.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
